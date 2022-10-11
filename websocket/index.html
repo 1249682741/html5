@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Demo</title>
+  <script src="./socket.js"></script>
+</head>
+<body>
+  <div id="app" style="white-space: pre-line"></div>
+  <script>
+    function listenWs(){
+      if (!('WebSocket' in window)){
+        alert('您的浏览器不支持WebSocket')
+        return
+      }
+      const socket = new Socket({
+        url: 'ws://localhost:3000/ws',
+        duration: 500,
+        onOpen: () => {
+          console.log('ws open');
+          console.log('window', this)
+        },
+        onMessage: (evnet) => {
+          app.innerHTML = `${app.innerHTML}\n\t${event.data}`
+        }
+      })
+    }
+    listenWs()
+  </script>
+</body>
+</html>
